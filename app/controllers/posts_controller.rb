@@ -26,11 +26,15 @@ class PostsController < ApplicationController
       format.json { render json: @post }
     end
   end
-
+=begin  
+  def edit
+    @post = Post.find(params[:id])
+  end
+=end
   def create
-    attach = params[:post][:attach].nil? || params[:post][:post_id].blank?
-    unless attach 
-     params[:post][:post_id] = nil 
+    attach = params[:attach].nil? || params[:post][:post_id].blank?
+    if attach
+      params[:post][:post_id] = nil 
       @post = Post.create(params[:post])
     else
       parent = Post.find(params[:post][:post_id])
@@ -49,6 +53,22 @@ class PostsController < ApplicationController
     end
   end
 
+=begin  
+  def update
+    @post = Post.find(params[:id])
+
+    respond_to do |format|
+      if @post.update_attributes(params[:post])
+        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+=end 
+ 
   def destroy
     @post = Post.find(params[:id])
     @post.destroy

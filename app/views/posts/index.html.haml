@@ -12,6 +12,7 @@
           %td='№' + post.id.to_s
           %td=link_to '>>>', post
           %td= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-mini btn-danger'
+    .span12
       .span8
         =post.content    
       .span4

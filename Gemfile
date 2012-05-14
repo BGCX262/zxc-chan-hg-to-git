@@ -11,6 +11,7 @@ gem 'sqlite3'
 gem 'decent_exposure'
 gem 'haml-rails'
 gem "paperclip", "~> 3.0"
+gem 'heroku'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
