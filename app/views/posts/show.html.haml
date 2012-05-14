@@ -1,0 +1,19 @@
+
+.span12.row
+  %table.table
+    %tr
+      %td
+        %h4=@post.subject
+      %td=@post.name
+      %td=@post.updated_at
+      %td='№' + @post.id.to_s
+  .span8=@post.content
+  .span4
+    - if !@post.picture_file_name.nil?  
+      =image_tag @post.picture.url(:small) 
+  
+
+= render :partial => 'posts/comment', :locals => {:comments => @post.comments} 
+
+\|
+= link_to 'Back', posts_path, {:class => 'btn pull-right'} 

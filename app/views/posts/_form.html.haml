@@ -1,0 +1,38 @@
+
+= form_for model(@post || nil), :html => { :class => 'form-horizontal', :multipart => true } do |f|
+  -unless @post.nil?
+    -if @post.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
+        %ul
+          - @post.errors.full_messages.each do |msg|
+            %li= msg
+
+  .control-group
+    = f.label "Имя", :class => 'control-label'
+    .controls
+      = f.text_field :name, :class => 'text_field'
+  .control-group
+    = f.hidden_field :post_id  
+  .control-group
+    = f.label "E-mail", :class => 'control-label'
+    .controls
+      = f.text_field :email, :class => 'text_field'
+  .control-group
+    = f.label "Тема", :class => 'control-label'
+    .controls
+      = f.text_field :subject, :class => 'text_field'
+  .control-group
+    = label_tag "К треду", nil, :class => 'control-label'
+    .controls
+      = check_box_tag(:attach)    
+  .control-group
+    = f.label "Комментарий", :class => 'control-label'
+    .controls
+      = f.text_area :content, :cols => "60", :rows => "15", :class => 'text_area'
+  .control-group    
+    = f.label "Изображение", :class => 'control-label'
+    .controls
+      = f.file_field :picture
+  .form-actions
+    = f.submit "Отправить", :class => 'btn btn-primary'

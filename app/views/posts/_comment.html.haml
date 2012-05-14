@@ -1,0 +1,18 @@
+.span12.row-fluid
+  -comments.each do |post|
+    .span12
+      %table.table
+        %tr
+          %td=post.subject
+          %td=post.name
+          %td=post.updated_at
+          %td='№' + post.id.to_s
+          %td= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-mini btn-danger'
+    .span12
+      .span8=post.content
+      .span4
+        - if !post.picture_file_name.nil? 
+          =image_tag post.picture.url(:small) 
+     
+
+
